@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学段贯通 - 教学成果奖申报网站</title>
+    <style>
+        /* 全局样式变量，与student.html保持一致 */
+        :root {
+            --primary-color: #B71C1C;
+            --text-dark: #121212;
+            --text-light: #333333;
+            --text-gray: #666666;
+            --bg-main: linear-gradient(135deg, #8B0000 0%, #B71C1C 100%);
+            --bg-card: #ffffff;
+            --border-color: #E0E0E0;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif;
+        }
+
+        body {
+            background: var(--bg-main);
+            color: var(--text-dark);
+            padding: 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 顶部成果标识栏，与index.html/student.html完全一致 */
+        .成果-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 25px 40px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .成果-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .成果-subtitle {
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            line-height: 1.4;
+        }
+
+        .成果-meta {
+            margin-top: 15px;
+            font-size: 14px;
+            opacity: 0.8;
+            display: flex;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+            flex-wrap: wrap;
+        }
+
+        .成果-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .成果-meta span::before {
+            content: "•";
+            font-size: 18px;
+        }
+
+        /* 导航栏样式，与student.html完全一致 */
+        .nav-bar {
+            background-color: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 99;
+        }
+
+        .nav-category {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-item {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .nav-search {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-search input {
+            padding: 6px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 13px;
+            width: 220px;
+            transition: border-color 0.2s;
+        }
+
+        .nav-search input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .nav-search button {
+            padding: 6px 12px;
+            border: none;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .nav-search button:hover {
+            background-color: #9F0000;
+        }
+
+        /* 主内容区样式，与student.html完全一致 */
+        .main-container {
+            padding: 40px;
+            margin: 30px 40px;
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .catalog-title {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        /* 一级分类样式，与student.html一致 */
+        .level-1 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0 0 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .level-1::before {
+            content: "▶";
+            font-size: 14px;
+            transition: transform 0.2s;
+        }
+
+        .level-1.active::before {
+            transform: rotate(90deg);
+        }
+
+        .toggle-tip {
+            font-size: 12px;
+            color: var(--text-gray);
+            font-weight: normal;
+            margin-left: 10px;
+        }
+
+        /* 分类列表样式 */
+        .category-list {
+            display: none;
+            margin-left: 25px;
+            padding-left: 10px;
+            border-left: 1px dashed var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .category-list.active {
+            display: block;
+        }
+
+        /* 二级分类样式，与student.html一致 */
+        .level-2 {
+            font-size: 15px;
+            color: var(--text-dark);
+            margin: 18px 0 10px;
+            display: block;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            font-weight: 500;
+            position: relative;
+            padding: 6px 18px;
+            border-radius: 2px;
+        }
+
+        .level-2::before {
+            content: "•";
+            color: var(--primary-color);
+            font-size: 18px;
+            position: absolute;
+            left: 0;
+            top: 6px;
+        }
+
+        .level-2:hover {
+            color: var(--primary-color);
+            background-color: #f0f0f0;
+            transform: translateX(3px);
+        }
+
+        /* 响应式适配，与student.html一致 */
+        @media (max-width: 1200px) {
+            .成果-subtitle {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .成果-header {
+                padding: 20px 20px;
+            }
+
+            .成果-title {
+                font-size: 26px;
+            }
+
+            .成果-subtitle {
+                font-size: 18px;
+            }
+
+            .成果-meta {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .nav-bar {
+                padding: 0 20px;
+            }
+
+            .nav-category {
+                gap: 10px;
+                overflow-x: auto;
+                padding: 0 5px;
+            }
+
+            .nav-search input {
+                width: 140px;
+            }
+
+            .main-container {
+                margin: 15px 20px;
+                padding: 25px;
+            }
+
+            .level-1, .level-2 {
+                font-size: 14px;
+            }
+
+            .toggle-tip {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部成果标识栏，与index.html/student.html完全一致 -->
+    <div class="成果-header">
+        <div class="成果-title">教学成果奖申报网站</div>
+        <div class="成果-subtitle">基于“知识再发现”的本科生数学创新能力协同培养新范式</div>
+        <div class="成果-meta">
+            <span>成果分类：基础学科人才培养（高等教育类）</span>
+            <span>学科归属：理学（数学类）</span>
+            <span>成果起止时间：2010.01--2020.12</span>
+            <span>实践检验期：5年（2020.12-2025.12）</span>
+        </div>
+    </div>
+
+    <!-- 导航栏，学段贯通为激活态 -->
+    <div class="nav-bar">
+        <div class="nav-category">
+            <a href="index.html" class="nav-item">首页</a>
+            <a href="student.html" class="nav-item">学生成长</a>
+            <a href="teacher.html" class="nav-item">教师进阶</a>
+            <a href="resource.html" class="nav-item">资源建设</a>
+            <a href="digital.html" class="nav-item">数智赋能</a>
+            <a href="stage.html" class="nav-item active">学段贯通</a>
+            <a href="media.html" class="nav-item">媒体报导</a>
+        </div>
+        <div class="nav-search">
+            <input type="text" placeholder="搜索学段贯通相关内容...">
+            <button>搜索</button>
+        </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="main-container">
+        <h2 class="catalog-title">学段贯通 - 教学成果应用及效果证明材料</h2>
+
+        <!-- 五、学段贯通 -->
+        <div class="level-1 active" onclick="toggleCategory('stage')">
+            5 学段贯通 <span class="toggle-tip">点击展开/收起</span>
+        </div>
+        <div id="stage" class="category-list active">
+            <a href="pdf-viewer.html?files=学段指南.pdf&title=本科数学教育与基础数学教育素养衔接指南" target="_blank" class="level-2">5.1 本科数学教育与基础数学教育素养衔接指南</a>
+            <a href="pdf-viewer.html?files=学段钱伟长学院直博培养.pdf&title=上海大学钱伟长学院本硕博一体化拔尖人才培养管理办法" target="_blank" class="level-2">5.2 上海大学钱伟长学院本硕博一体化拔尖人才培养管理办法</a>
+            <a href="pdf-viewer.html?files=学段-盖章更新_“知识再发现”导向的本科与基础教育数学贯通中学教学实验总结报告(新教材盖章).pdf&title=知识再发现导向的本—基数学贯通中学教学实验总结报告" target="_blank" class="level-2">5.3 "知识再发现"导向的本—基数学贯通中学教学实验总结报告</a>
+            <a href="pdf-viewer.html?files=学段钱伟长学院数学与应用数学专业本硕博贯通培养实践总结报告.pdf&title=知识再发现导向的本—研数学贯通教学实践总结报告" target="_blank" class="level-2">5.4 "知识再发现"导向的本—研数学贯通教学实践总结报告</a>
+        </div>
+    </div>
+
+    <!-- 交互脚本，与student.html逻辑一致 -->
+    <script>
+        // 一级分类展开/收起
+        function toggleCategory(id) {
+            const el = document.getElementById(id);
+            const trigger = document.querySelector(`.level-1[onclick="toggleCategory('${id}')"]`);
+            el.classList.toggle('active');
+            trigger.classList.toggle('active');
+        }
+
+        // 搜索功能
+        document.querySelector('.nav-search button').addEventListener('click', function() {
+            const searchText = document.querySelector('.nav-search input').value.trim().toLowerCase();
+            if (!searchText) return;
+
+            // 高亮匹配的内容项
+            document.querySelectorAll('.level-2').forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchText)) {
+                    item.style.backgroundColor = 'rgba(183, 28, 28, 0.1)';
+                    item.style.borderLeft = '3px solid var(--primary-color)';
+                } else {
+                    item.style.backgroundColor = '';
+                    item.style.borderLeft = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
