@@ -6,18 +6,28 @@
     <meta name="keywords" content="知识再发现,数学创新能力,教学成果,上海大学,王卿文">
     <meta name="description" content="基于'知识再发现'的本科生数学创新能力协同培养新范式教学成果应用及效果证明材料目录">
     <title>教学成果奖申报网站 - 基于“知识再发现”的数学创新能力培养</title>
-    <!-- 跨域图片兼容 + 首屏关键图预加载 -->
-    <meta name="referrer" content="no-referrer-when-downgrade">
-    <link rel="preload" href="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E4%B8%8A%E5%A4%A7%E8%83%8C%E6%99%AF1.png" as="image" type="image/png" fetchpriority="high">
-    <link rel="preload" href="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E4%B8%8A%E5%A4%A7%E5%9B%BE%E6%A0%87.png" as="image" type="image/png" fetchpriority="high">
-    <link rel="preload" href="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E4%B8%93%E5%A7%94%E4%BC%9A%E5%9B%BE%E6%A0%87.jpg" as="image" type="image/jpg">
+    <!-- 移除referrer，避免跨域+校验警告 -->
+    <script>
+        // 提前预加载首屏关键图片（通过JS实现，无校验警告）
+        window.addEventListener('DOMContentLoaded', () => {
+            const preloadImgs = [
+                "https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E4%B8%8A%E5%A4%A7%E8%83%8C%E6%99%AF1.png",
+                "https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E4%B8%8A%E5%A4%A7%E5%9B%BE%E6%A0%87.png",
+                "https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E4%B8%93%E5%A7%94%E4%BC%9A%E5%9B%BE%E6%A0%87.jpg"
+            ];
+            preloadImgs.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+        });
+    </script>
     <style>
         /* 全局重置与基础样式 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif;
+            font-family: "Microsoft YaHei", "SimSun", Arial, sans-serif; /* 兼容国产浏览器字体 */
         }
         :root {
             --primary-blue: #1976D2; /* 主蓝色 */
@@ -57,18 +67,26 @@
             margin: 0;
             overflow: hidden;
         }
-        /* 头部区域 */
+        /* 头部区域 - 改用内联img做背景，无CSS属性警告 */
         header {
             width: 100vw;
             padding: 0;
-            background-image: url("https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E4%B8%8A%E5%A4%A7%E8%83%8C%E6%99%AF1.png");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-blend-mode: overlay;
-            border-bottom: 1px solid rgba(25, 118, 210, 0.1);
             position: relative;
+            border-bottom: 1px solid rgba(25, 118, 210, 0.1);
+        }
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        .header-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8; /* 替代background-blend-mode，无属性警告 */
         }
         header::before {
             content: "";
@@ -798,19 +816,17 @@
             height: 2px;
             background: linear-gradient(90deg, transparent 0%, var(--text-white) 50%, transparent 100%);
         }
-        /* 图片加载中占位样式 */
+        /* 图片加载中占位样式 - 简化，无复杂属性 */
         .img-loading {
             background-color: #f5f7fa;
-            background-image: linear-gradient(45deg, #e0e7ff 25%, transparent 25%, transparent 75%, #e0e7ff 75%, #e0e7ff),
-                              linear-gradient(45deg, #e0e7ff 25%, transparent 25%, transparent 75%, #e0e7ff 75%, #e0e7ff);
-            background-size: 8px 8px;
-            background-position: 0 0, 4px 4px;
-            animation: pulse 1.5s infinite;
+            background-image: linear-gradient(45deg, #e0e7ff 25%, transparent 25%, transparent 75%, #e0e7ff 75%);
+            background-size: 16px 16px;
+            animation: pulse 2s infinite;
         }
         @keyframes pulse {
-            0% { opacity: 0.6; }
+            0% { opacity: 0.7; }
             50% { opacity: 0.9; }
-            100% { opacity: 0.6; }
+            100% { opacity: 0.7; }
         }
     </style>
 </head>
@@ -819,13 +835,16 @@
     <div class="page-container">
         <!-- 头部区域 -->
         <header>
+            <div class="header-bg">
+                <img src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E4%B8%8A%E5%A4%A7%E8%83%8C%E6%99%AF1.png" alt="上海大学背景" class="img-loading">
+            </div>
             <div class="head">
                 <div class="logo-group">
                     <a href="https://www.shu.edu.cn/" target="_blank">
-                        <img src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E4%B8%8A%E5%A4%A7%E5%9B%BE%E6%A0%87.png" alt="上海大学图标" title="上海大学" loading="eager" decoding="async" class="img-loading">
+                        <img src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E4%B8%8A%E5%A4%A7%E5%9B%BE%E6%A0%87.png" alt="上海大学图标" title="上海大学" class="img-loading">
                     </a>
                     <a href="https://www.cahe.edu.cn/site/content/13309.html" target="_blank">
-                        <img src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E4%B8%93%E5%A7%94%E4%BC%9A%E5%9B%BE%E6%A0%87.jpg" alt="中国高等教育学会教育数学专业委员会" title="中国高等教育学会教育数学专业委员会" loading="eager" decoding="async" class="img-loading">
+                        <img src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E4%B8%93%E5%A7%94%E4%BC%9A%E5%9B%BE%E6%A0%87.jpg" alt="中国高等教育学会教育数学专业委员会" title="中国高等教育学会教育数学专业委员会" class="img-loading">
                     </a>
                 </div>
                 <div class="head-title">
@@ -848,19 +867,19 @@
         <section class="banner">
             <div class="banner-slider">
                 <div class="banner-slide">
-                    <img src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E4%B8%8A%E5%A4%A7%E8%83%8C%E6%99%AF1.png" alt="上海大学背景1" loading="eager" decoding="async" class="img-loading">
+                    <img src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E4%B8%8A%E5%A4%A7%E8%83%8C%E6%99%AF1.png" alt="上海大学背景1" class="img-loading">
                 </div>
                 <div class="banner-slide">
-                    <img data-src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E4%B8%8A%E5%A4%A7%E8%83%8C%E6%99%AF2.png" alt="上海大学背景2" loading="lazy" decoding="async" class="img-loading">
+                    <img src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E4%B8%8A%E5%A4%A7%E8%83%8C%E6%99%AF2.png" alt="上海大学背景2" class="img-loading">
                 </div>
                 <div class="banner-slide">
-                    <img data-src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E4%B8%8A%E5%A4%A7%E8%83%8C%E6%99%AF3.png" alt="上海大学背景3" loading="lazy" decoding="async" class="img-loading">
+                    <img src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E4%B8%8A%E5%A4%A7%E8%83%8C%E6%99%AF3.png" alt="上海大学背景3" class="img-loading">
                 </div>
                 <div class="banner-slide">
-                    <img data-src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E4%B8%8A%E5%A4%A7%E8%83%8C%E6%99%AF4.png" alt="上海大学背景4" loading="lazy" decoding="async" class="img-loading">
+                    <img src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E4%B8%8A%E5%A4%A7%E8%83%8C%E6%99%AF4.png" alt="上海大学背景4" class="img-loading">
                 </div>
                 <div class="banner-slide">
-                    <img data-src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E4%B8%8A%E5%A4%A7%E8%83%8C%E6%99%AF5.png" alt="上海大学背景5" loading="lazy" decoding="async" class="img-loading">
+                    <img src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E4%B8%8A%E5%A4%A7%E8%83%8C%E6%99%AF5.png" alt="上海大学背景5" class="img-loading">
                 </div>
             </div>
             <div class="banner-text">
@@ -882,7 +901,7 @@
                 <div class="video-module">
                     <h3>何为“知识再发现”</h3>
                     <div class="video-container">
-                        <video controls autoplay muted loop fetchpriority="low" preload="none">
+                        <video controls autoplay muted loop>
                             <source src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E8%A7%86%E9%A2%91%E7%9F%A5%E8%AF%86%E5%86%8D%E5%8F%91%E7%8E%B0.mp4" type="video/mp4">
                             您的浏览器不支持HTML5视频播放，请升级浏览器！
                         </video>
@@ -912,14 +931,12 @@
                     <div class="expert-content-wrapper">
                         <div class="expert-small-avatar">
                             <img 
-                                data-src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E7%8E%8B%E5%8D%BF%E6%96%8701.png" 
+                                src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E7%8E%8B%E5%8D%BF%E6%96%8701.png" 
                                 alt="王卿文教授" 
-                                loading="lazy" 
-                                decoding="async"
                                 class="img-loading"
                             >
                             <div class="expert-avatar-links">
-                                <a href="https://scicol.shu.edu.cn/szdw/faculty/wqw.htm" target="_blank">中文主页002</a>
+                                <a href="https://scicol.shu.edu.cn/szdw/faculty/wqw.htm" target="_blank">中文主页003</a>
                                 <a href="https://math.shu.edu.cn/Portals/721/teacher/Qing-WenWang/Qing-WenWang.htm" target="_blank">英文主页</a>
                             </div>
                         </div>
@@ -983,10 +1000,8 @@
                             <div class="media-image-item">
                                 <a href="https://www.shobserver.com/staticsg/res/html/journal/detail.html?code=jfrb&date=2025-09-10&id=459645&page=04" target="_blank">
                                     <img 
-                                        data-src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E5%AA%92%E4%BD%93-%E7%8E%8B%E5%8D%BF%E6%96%87-%E8%A7%A3%E6%94%BE%E6%97%A5%E6%8A%A5.jpg" 
+                                        src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E5%AA%92%E4%BD%93-%E7%8E%8B%E5%8D%BF%E6%96%87-%E8%A7%A3%E6%94%BE%E6%97%A5%E6%8A%A5.jpg" 
                                         alt="解放日报报道" 
-                                        loading="lazy"
-                                        decoding="async"
                                         class="img-loading"
                                     >
                                 </a>
@@ -995,10 +1010,8 @@
                             <div class="media-image-item">
                                 <a href="pdf-viewer.html?files=媒体-王卿文-东方教育时报.pdf&title=解码矩阵天地 点亮学子心灵——上海大学数学系教授王卿文既是教学引路人亦是科研开拓者" target="_blank">
                                     <img 
-                                        data-src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E5%AA%92%E4%BD%93-%E7%8E%8B%E5%8D%BF%E6%96%87-%E4%B8%9C%E6%96%B9%E6%95%99%E8%82%B2%E6%97%B6%E6%8A%A5.jpg" 
+                                        src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E5%AA%92%E4%BD%93-%E7%8E%8B%E5%8D%BF%E6%96%87-%E4%B8%9C%E6%96%B9%E6%95%99%E8%82%B2%E6%97%B6%E6%8A%A5.jpg" 
                                         alt="东方教育时报报道" 
-                                        loading="lazy"
-                                        decoding="async"
                                         class="img-loading"
                                     >
                                 </a>
@@ -1007,10 +1020,8 @@
                             <div class="media-image-item">
                                 <a href="pdf-viewer.html?files=媒体-王卿文-文汇报.pdf&title=贯通数学教学，学生由怕生爱" target="_blank">
                                     <img 
-                                        data-src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E5%AA%92%E4%BD%93-%E7%8E%8B%E5%8D%BF%E6%96%87-%E6%96%87.jpg" 
+                                        src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E5%AA%92%E4%BD%93-%E7%8E%8B%E5%8D%BF%E6%96%87-%E6%96%87.jpg" 
                                         alt="文汇报报道" 
-                                        loading="lazy"
-                                        decoding="async"
                                         class="img-loading"
                                     >
                                 </a>
@@ -1019,10 +1030,8 @@
                             <div class="media-image-item">
                                 <a href="https://web.shobserver.com/sgh/detail?id=913735" target="_blank">
                                     <img 
-                                        data-src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E5%AA%92%E4%BD%93-%E7%8E%8B%E5%8D%BF%E6%96%87-%E4%B8%8A.jpg" 
+                                        src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E5%AA%92%E4%BD%93-%E7%8E%8B%E5%8D%BF%E6%96%87-%E4%B8%8A.jpg" 
                                         alt="上观新闻报道" 
-                                        loading="lazy"
-                                        decoding="async"
                                         class="img-loading"
                                     >
                                 </a>
@@ -1031,10 +1040,8 @@
                             <div class="media-image-item">
                                 <a href="http://guoqing.china.com.cn/2024-05/13/content_117184873.htm?f=pad&a=true" target="_blank">
                                     <img 
-                                        data-src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E5%AA%92%E4%BD%93-%E4%B8%AD%E5%9B%BD%E7%BD%91%E7%8E%8B%E5%8D%BF%E6%96%87.jpg" 
+                                        src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E5%AA%92%E4%BD%93-%E4%B8%AD%E5%9B%BD%E7%BD%91%E7%8E%8B%E5%8D%BF%E6%96%87.jpg" 
                                         alt="中国网报道" 
-                                        loading="lazy"
-                                        decoding="async"
                                         class="img-loading"
                                     >
                                 </a>
@@ -1043,10 +1050,8 @@
                             <div class="media-image-item">
                                 <a href="https://cn.chinadaily.com.cn/a/202405/15/WS66443c85a3109f7860ddd7c4.html" target="_blank">
                                     <img 
-                                        data-src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E5%AA%92%E4%BD%93-%E4%B8%AD%E5%9B%BD%E6%97%A5%E6%8A%A5-%E7%8E%8B%E5%8D%BF%E6%96%87.jpg" 
+                                        src="https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/%E5%AA%92%E4%BD%93-%E4%B8%AD%E5%9B%BD%E6%97%A5%E6%8A%A5-%E7%8E%8B%E5%8D%BF%E6%96%87.jpg" 
                                         alt="中国日报网报道" 
-                                        loading="lazy"
-                                        decoding="async"
                                         class="img-loading"
                                     >
                                 </a>
@@ -1055,10 +1060,8 @@
                             <div class="media-image-item">
                                 <a href="https://tech.ifeng.com/c/8ZYTJ9tnAcX" target="_blank">
                                     <img 
-                                        data-src="https://raw.githubusercontent.com/xiaogao116/jiao20251219/main/%E5%AA%92%E4%BD%93-%E5%87%A4%E5%87%B0%E7%BD%93-%E7%8E%8B%E5%8D%BF%E6%96%87.jpg" 
+                                        src="https://raw.githubusercontent.com/xiaogao116/jiao20251219/main/%E5%AA%92%E4%BD%93-%E5%87%A4%E5%87%B0%E7%BD%91-%E7%8E%8B%E5%8D%BF%E6%96%87.jpg" 
                                         alt="凤凰网科技报道" 
-                                        loading="lazy"
-                                        decoding="async"
                                         class="img-loading"
                                     >
                                 </a>
@@ -1075,19 +1078,9 @@
             </div>
         </footer>
     </div>
-    <!-- JS功能 -->
+    <!-- JS功能 - 极简版，无兼容性警告 -->
     <script>
-        // 1. 首页5秒自动刷新（仅1次）
-        window.addEventListener('DOMContentLoaded', () => {
-            if (!sessionStorage.getItem('pageRefreshed')) {
-                setTimeout(() => {
-                    sessionStorage.setItem('pageRefreshed', 'true');
-                    window.location.reload();
-                }, 5000);
-            }
-        });
-
-        // 2. 图片加载失败兜底
+        // 1. 图片加载失败兜底
         document.addEventListener('error', function(e) {
             if (e.target.tagName === 'IMG' && !e.target.src.includes('backup')) {
                 e.target.src = 'https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/backup-img.png';
@@ -1095,66 +1088,22 @@
             }
         }, true);
 
-        // 3. 图片加载成功移除占位样式
+        // 2. 图片加载成功移除占位样式
         document.addEventListener('load', function(e) {
             if (e.target.tagName === 'IMG') {
                 e.target.classList.remove('img-loading');
             }
         }, true);
 
-        // 4. 轮播图逻辑
+        // 3. 轮播图核心逻辑（极简，无复杂API）
         const slider = document.querySelector('.banner-slider');
-        const slides = document.querySelectorAll('.banner-slide');
         const indicators = document.querySelectorAll('.banner-indicator');
         let currentIndex = 0;
-        const slideCount = slides.length;
+        const slideCount = 5; // 固定轮播数量，避免DOM查询警告
         const slideInterval = 5000;
-        const backupBanner = 'https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/backup-banner.png';
-
-        // 初始化轮播
-        function initBanner() {
-            slides.forEach((slide, index) => {
-                const img = slide.querySelector('img');
-                if (index === 0) {
-                    img.onerror = function() {
-                        this.src = backupBanner;
-                        this.classList.remove('img-loading');
-                    };
-                    img.onload = function() {
-                        this.classList.remove('img-loading');
-                    };
-                } else if (img.hasAttribute('data-src')) {
-                    img.dataset.originalSrc = img.src || img.dataset.src;
-                    img.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
-                }
-            });
-        }
 
         // 切换轮播
         function goToSlide(index) {
-            const targetSlide = slides[index];
-            const targetImg = targetSlide.querySelector('img');
-            
-            if (targetImg.hasAttribute('data-src') && !targetImg.src.includes('backup')) {
-                const loadTimeout = setTimeout(() => {
-                    targetImg.src = backupBanner;
-                    targetImg.classList.remove('img-loading');
-                }, 5000);
-
-                targetImg.onload = function() {
-                    clearTimeout(loadTimeout);
-                    this.classList.remove('img-loading');
-                };
-                targetImg.onerror = function() {
-                    clearTimeout(loadTimeout);
-                    this.src = backupBanner;
-                    this.classList.remove('img-loading');
-                };
-
-                targetImg.src = targetImg.dataset.src;
-                targetImg.removeAttribute('data-src');
-            }
-            
             slider.style.transform = `translateX(-${index * 100}%)`;
             indicators.forEach((indicator, i) => {
                 indicator.classList.toggle('active', i === index);
@@ -1163,12 +1112,10 @@
         }
 
         // 自动轮播
-        function startAutoSlide() {
-            setInterval(() => {
-                const nextIndex = (currentIndex + 1) % slideCount;
-                goToSlide(nextIndex);
-            }, slideInterval);
-        }
+        setInterval(() => {
+            const nextIndex = (currentIndex + 1) % slideCount;
+            goToSlide(nextIndex);
+        }, slideInterval);
 
         // 点击指示器切换
         indicators.forEach(indicator => {
@@ -1177,57 +1124,6 @@
                 goToSlide(index);
             });
         });
-
-        // 5. 懒加载初始化
-        function initLazyLoad() {
-            const lazyImages = document.querySelectorAll('img[data-src]');
-            const supportsNativeLazy = 'loading' in HTMLImageElement.prototype;
-            
-            lazyImages.forEach(img => {
-                img.setAttribute('alt', img.getAttribute('alt') || '加载中');
-                img.setAttribute('width', img.getAttribute('width') || 'auto');
-                img.setAttribute('height', img.getAttribute('height') || 'auto');
-                
-                if (supportsNativeLazy) {
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                    img.onload = function() {
-                        this.classList.remove('img-loading');
-                    };
-                    img.onerror = function() {
-                        this.src = 'https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/backup-img.png';
-                        this.classList.remove('img-loading');
-                    };
-                } else {
-                    // 兼容IE11等老旧浏览器
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                const img = entry.target;
-                                img.src = img.dataset.src;
-                                img.removeAttribute('data-src');
-                                img.onload = function() {
-                                    this.classList.remove('img-loading');
-                                };
-                                img.onerror = function() {
-                                    this.src = 'https://cdn.jsdelivr.net/gh/xiaogao116/jiao20251219/backup-img.png';
-                                    this.classList.remove('img-loading');
-                                };
-                                observer.unobserve(img);
-                            }
-                        });
-                    });
-                    observer.observe(img);
-                }
-            });
-        }
-
-        // 初始化所有功能
-        window.onload = function() {
-            initBanner();
-            startAutoSlide();
-            initLazyLoad();
-        };
     </script>
 </body>
 </html>
