@@ -49,7 +49,7 @@
             user-select: none;
         }
 
-        /* 导航栏：匹配首页导航风格 */
+        /* 导航栏：修改为居中布局 */
         .nav-bar {
             /* 复用首页导航栏渐变背景 */
             background: linear-gradient(90deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
@@ -59,7 +59,8 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
             display: flex;
             align-items: center;
-            justify-content: flex-end;
+            /* 关键修改：从justify-content: flex-end改为center */
+            justify-content: center;
             position: relative;
             z-index: 99;
         }
@@ -76,6 +77,8 @@
             transition: all 0.3s ease;
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            /* 增加:focus样式，提升可访问性 */
+            outline: none;
         }
         
         .btn-return:hover {
@@ -83,6 +86,10 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
             color: var(--deep-blue);
+        }
+        
+        .btn-return:focus {
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
         }
 
         /* PDF容器：扩大显示区域 */
@@ -205,7 +212,7 @@
 <body oncontextmenu="return false;">
     <!-- 导航栏：匹配首页风格 -->
     <div class="nav-bar">
-        <button class="btn-return" onclick="goBack()">返回</button>
+        <button class="btn-return" onclick="goBack()">返回上一页</button>
     </div>
 
     <!-- PDF预览容器 -->
